@@ -4,14 +4,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
 	<title>Web Chat</title>
+	<link rel="stylesheet" href="style.css">
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="index.js"></script>
 </head>
 <body>
 	<h1>Chat com Socket.io e NodeJS</h1>
-	<div id="msg">
+	<div id="msgs">
 		
 	</div>
-	
+	<form onsubmit="return addMessage(this);">
+		<input type="text" id="nickname" placeholder="Seu apelido">
+		<textarea id="msg" name="msg" placeholder="Mensagem"></textarea>
+		<input type="submit" value="Enviar">
+	</form>
+
 </body>
 </html>

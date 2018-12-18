@@ -10,8 +10,21 @@ app.get('/teste-rota', function(req, res) {
 	res.status(200).send('Rota de teste OK');
 });
 
+var msg = [{
+	id: 1,
+	text: 'Bem vindo ao Web chat',
+	nickname: 'Alexandre do Vale'
+}];
+
 io.on('connection', function(socket){
 	console.log("IP:" + socket.handshake.address + " conectado.");
+
+	socket.emit('messagens', msg);
+
+	socket.on('add-message', function(data) {
+		message.push(data);
+		io.sockets.emit('messages', messages);
+	});
 });
 
 server.listen(6677, function(){
