@@ -1,4 +1,4 @@
-#msgs {
+#messages {
 	width: 90%;
 	max-width: 320px;
 	height: 350px;
@@ -7,7 +7,7 @@
 	box-shadow: 0px 0px 20px #ccc inset;
 }
 
-.msg {
+.message {
 	margin: 20px;
 	padding: 5px;
 	border-radius: 5px;

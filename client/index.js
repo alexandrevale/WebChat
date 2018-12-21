@@ -1,35 +1,48 @@
-var socket = io.connect('192.168.0.145:6677',{'forceNew': true});
+var socket = io.connect('http://192.168.0.145:6677',{'forceNew': true});
 
-socket.on('messagens', function(data) {
-	console.log(data);
-	render(data);
-});
+// function render(data) {
+// 	var html = data.map(function(message, index){
+// 		return (
+// 			`<div class="message">
+// 				<strong>${message.nickname}</strong>
+// 				<p>${message.text}</p>
+// 			</div>`
+// 			);
+// 	}).join(' ');
 
-function render(data) {
-	var html = data.map(function(messagens, index){
-		return (`
-			<div class="msg">
-				<strong>${messagens.nickname}</strong>
-				<p>${messagens.text}</p>
-			</div>
-		`);
-	}).join('');
+// 	var divMsgs = document.getElementById('messages');
 
-	var divMsgs = document.getElementById('msgs');
-
-	divMsgs.innerHtml = html;
-	divMsgs.scrollTop = divMsgs.scrollHeight;
-}
+// 	divMsgs.innerHtml = html;
+// 	divMsgs.scrollTop = divMsgs.scrollHeight;
+// }
 
 function addMessage(e) {
-	var mensagem = {
+	var message = {
 		nickname: document.getElementById('nickname').value,
-		msg: document.getElementById('msg').value
+		text: document.getElementById('message').value
 	};
 
 	document.getElementById('nickname').style.display = 'none';
 
 	socket.emit('add-message', message);
 
-	// return false;
 }
+
+socket.on('messages', function(data) {
+	console.log(data);
+	// render(data);
+	var html = data.map(function(message, index){
+		return (
+			`<div class="message">
+				<strong>${message.nickname}</strong>
+				<p>${message.text}</p>
+			</div>`
+			);
+	}).join(' ');
+
+	var divMsgs = document.getElementById('messages');
+
+	divMsgs.innerHtml = html;
+	divMsgs.scrollTop = divMsgs.scrollHeight;
+	
+});
